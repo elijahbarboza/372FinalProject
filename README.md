@@ -1,26 +1,20 @@
 ## System Architecture
 ```mermaid
 flowchart TD
-    A[Spotify Web API – playlists, track metadata, audio features, preview URLs]
-        --> B[Data collection and preprocessing – Spotipy, Pandas, feature engineering]
-    B --> C[Model training – similarity or ranking network, baseline and tuned models]
-    C --> D[Recommendation API – Flask or FastAPI endpoint]
-    subgraph WebApp["Front‑End – Streamlit or Gradio"]
-        E[User selects track or enters vibe query]
-        E -->|/recommend?track_id=...| D
-        D -->|Top‑N recommendations| F[Display track cards – title, artist, score, play buttons]
-        F --> G[Audio playback – Streamlit audio player for 30‑second preview_url]
-        F --> H[Optional mix endpoint – /mix?track1&track2]
-    end
-    H --> I[Audio mixing module – beat alignment and cross‑fade with Librosa]
-    I --> G
-    F --> J[Spotify link]
-    J -->|Open full track in Spotify| X[Spotify app or web player]
-
-    style A fill:#1db954,stroke:#0f6b3b,color:#fff
-    style B fill:#d1f5d3,stroke:#008040
-    style C fill:#cbe5ff,stroke:#0050a0
-    style D fill:#b2b2ff,stroke:#4040a0
-    style WebApp fill:#ffe9b3,stroke:#a08300
-    style I fill:#ffd7b3,stroke:#a04000
-    style J fill:#cccccc,stroke:#555
+    A[Raw Training Data\n(GPS splits, cadence, HR, temp, demographics)] 
+        --> B[Data Preprocessing\n(cleaning, normalization, feature engineering)]
+    B --> C1[Baseline ML Models\n(Linear Reg., XGBoost, Random Forest)]
+    B --> C2[Deep Time‑Series Models\n(LSTM, Transformer Encoder)]
+    C1 --> D[Performance Prediction – race time, fatigue index]
+    C2 --> D
+    D --> E[Evaluation & Visualization\n(R^2, RMSE, training curves, error plots)]
+    D --> F[Workout Recommendation Layer\n(Reinforcement learning / heuristic policy)]
+    F --> G[Next‑Day Workout Suggestion\n(easy run, tempo, rest)]
+    style A fill:#d9f5ff,stroke:#0077b6
+    style B fill:#e6ffe6,stroke:#228B22
+    style C1 fill:#f9f9b5,stroke:#b59d00
+    style C2 fill:#f9f9b5,stroke:#b59d00
+    style D fill:#ffcccc,stroke:#b30000
+    style E fill:#d9c2ff,stroke:#6a0dad
+    style F fill:#ffe6cc,stroke:#cc6600
+    style G fill:#fff2cc,stroke:#d4a017
