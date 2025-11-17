@@ -1,21 +1,18 @@
 ## System Architecture
 ```mermaid
 flowchart TD
-    A[Spotify Web API<br/>(Playlists, Track Metadata,<br/>Audio Features, Preview URLs)]
-        --> B[Data Collection & Preprocessing<br/>(Spotipy, Pandas, Feature Engineering)]
-
-    B --> C[Model Training<br/>(Similarity / Ranking Network,<br/>Baseline + Tuned Models)]
-    C --> D[Recommendation API<br/>(Flask/FastAPI Endpoint)]
-
+    A[Spotify Web API\n(Playlists, Track Metadata,\nAudio Features, Preview URLs)]
+        --> B[Data Collection & Preprocessing\n(Spotipy, Pandas, Feature Engineering)]
+    B --> C[Model Training\n(Similarity / Ranking Network,\nBaseline + Tuned Models)]
+    C --> D[Recommendation API\n(Flask/FastAPI Endpoint)]
     subgraph WebApp["Front‑End (Streamlit / Gradio)"]
-        E[User selects track<br/>or enters vibe query]
+        E[User selects track\nor enters vibe query]
         E -->|/recommend?track_id=...| D
-        D -->|Top‑N recommendations| F[Display Track Cards<br/>Title, Artist, Score, Play Buttons]
-        F --> G[Audio Playback<br/>HTML/Streamlit Audio Player<br/>(30‑s preview_url)]
-        F --> H[Optional Mix Endpoint<br/>(/mix?track1&track2)]
+        D -->|Top‑N recommendations| F[Display Track Cards\nTitle, Artist, Score, Play Buttons]
+        F --> G[Audio Playback\nHTML/Streamlit Audio Player\n(30‑s preview_url)]
+        F --> H[Optional Mix Endpoint\n(/mix?track1&track2)]
     end
-
-    H --> I[Audio Mixing Module<br/>(Beat align + Crossfade with Librosa)]
+    H --> I[Audio Mixing Module\n(Beat align + Crossfade with Librosa)]
     I --> G
     F --> J[(Spotify Link)]
     J -->|Open full track in Spotify| X[Spotify App / Web Player]
