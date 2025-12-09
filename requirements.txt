@@ -2,10 +2,21 @@ opencv-python>=4.5.0
 numpy>=1.21.0,<2.0.0
 pandas>=1.3.0
 scikit-learn>=1.0.0
+scipy>=1.7.0
 tqdm>=4.62.0
 joblib>=1.0.0
 jupyter>=1.0.0
+face-recognition>=1.3.0
+torch>=2.0.0
+torchvision>=0.15.0
+matplotlib>=3.5.0
+pillow>=9.0.0
 
-# Note: If you have numpy 2.x installed, you may need to:
-# pip install "numpy<2.0" OR pip install --upgrade scikit-learn
+# IMPORTANT: NumPy 2.x is NOT compatible with scipy/scikit-learn yet
+# If you see compatibility errors, run: pip install "numpy<2.0"
+
+# Note: face-recognition requires dlib, which may need to be installed separately:
+# On macOS: brew install cmake && pip install dlib
+# On Linux: sudo apt-get install cmake && pip install dlib
+# On Windows: pip install dlib (may require Visual Studio Build Tools)
 
