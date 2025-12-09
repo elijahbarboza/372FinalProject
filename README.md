@@ -25,7 +25,8 @@ python src/inference/predict_pytorch.py data/testimg/wendellmoore.png
 ```
 
 ## Video Links 
-
+Final Demo: /videos/FINALPROJECTDEMO.mp4
+Technical Walkthrough: videos/TECHNICALWALKTHROUGH.mp4
 
 ## Evaluation
 The model was trained on 544 NBA player images (one image per player) and evaluated on the training set:
