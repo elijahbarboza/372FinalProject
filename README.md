@@ -24,9 +24,6 @@ python src/training/train_pytorch.py
 python src/inference/predict_pytorch.py data/testimg/wendellmoore.png
 ```
 
-Sample output:
-
-
 ## Video Links 
 
 
